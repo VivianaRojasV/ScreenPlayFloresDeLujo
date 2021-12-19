@@ -394,9 +394,9 @@ public class FloresDeLujoStepsDefinitionsEscenarios {
 
 ```
 
-_Paquete features_
+## Paquete features.
 
-_En este paquete se describen las características y escenarios a probar haciendo uso del lenguaje Gherkin_
+_En este paquete se describen las características y escenarios a probar haciendo uso del lenguaje Gherkin._
 
 _Archivo feature ejercicio 1_
 
