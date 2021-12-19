@@ -155,7 +155,7 @@ public class SeleccionarProductos implements Task  {
 
 ### Paquete uis
 
-_Aquí tendremos los Target que contendran identificadores de pagina Xpath. _
+_Aquí tendremos los Target que contendran identificadores de pagina Xpath._
 
 _Codigo Clase Inicio flores de lujo_
 
@@ -188,4 +188,284 @@ public class VisualizarProducto {
 
 _El paquete runners es el encargado de ejecutar todos es escenarios cargados en features se especifican qué ejecutar y cómo hacerlo._
    
+_Clase runner ejercicio 1_
 
+```
+package runners;
+
+import cucumber.api.CucumberOptions;
+import cucumber.api.SnippetType;
+import net.serenitybdd.cucumber.CucumberWithSerenity;
+import org.junit.runner.RunWith;
+
+@RunWith(CucumberWithSerenity.class)
+@CucumberOptions(
+        features = "src\\test\\resources\\features\\FloresDeLujo.feature",
+        glue = "stepsDefinitions",
+        snippets = SnippetType.CAMELCASE
+)
+public class FloresDeLujoRunners {
+}
+```
+
+_Clase runner ejercicio 2_
+
+```
+package runners;
+
+import cucumber.api.CucumberOptions;
+import cucumber.api.SnippetType;
+import net.serenitybdd.cucumber.CucumberWithSerenity;
+import org.junit.runner.RunWith;
+
+@RunWith(CucumberWithSerenity.class)
+@CucumberOptions(
+        features = "src\\test\\resources\\features\\FloresDeLujoB.feature",
+        glue = "stepsDefinitions",
+        snippets = SnippetType.CAMELCASE
+)
+public class FloresDeLujoRunnersB {
+}
+```
+
+_Clase runner ejercicio 3_
+
+```
+package runners;
+
+import cucumber.api.CucumberOptions;
+import cucumber.api.SnippetType;
+import net.serenitybdd.cucumber.CucumberWithSerenity;
+import org.junit.runner.RunWith;
+
+@RunWith(CucumberWithSerenity.class)
+@CucumberOptions(
+        features = "src\\test\\resources\\features\\FloresDeLujoEscenarios.feature",
+        glue = "stepsDefinitions",
+        snippets = SnippetType.CAMELCASE
+)
+public class FloresDeLujoRunnersEscenarios {
+}
+
+```
+
+_El paquete stepsdefinitions_
+
+_Los Stepsdefinitions son los que contienen el código de los escenarios del feature las acciones como Given, When y Then._
+
+_Clase Stepsdefinition ejercicio 1_
+
+```
+package stepsDefinitions;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import driver.GoogleChromeDriver;
+import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.GivenWhenThen;
+import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
+import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
+import net.serenitybdd.screenplay.questions.WebElementQuestion;
+import tasks.BuscarEstilos;
+import uis.VisualizarProducto;
+
+public class FloresDeLujoStepsDefinitions {
+
+    Actor actor = new Actor("Pepito Perez");
+
+    @Given("^me encuentro en la pagina de FloresDeLujo$")
+    public void meEncuentroEnLaPaginaDeFloresDeLujo() {
+      actor.can(BrowseTheWeb.with(GoogleChromeDriver.ChromeHisBrowserWeb().on("https://floresdelujo.co/")));
+    }
+
+    @When("^se ingresa al estilo amor para buscar (.*)$")
+    public void seIngresaAlEstiloAmorParaBuscarRustic(String arregloFloral) {
+        actor.attemptsTo(BuscarEstilos.floresDeLujo(arregloFloral));
+    }
+
+    @Then("^podre ver los productos (.*) en pantalla$")
+    public void podreVerLosProductosRusticEnPantalla(String producto) {
+        actor.should(GivenWhenThen.seeThat(WebElementQuestion.the(VisualizarProducto.NOMBRE.of(producto)), WebElementStateMatchers.containsText(producto)));
+    }
+
+}
+```
+
+_Clase stepsdefinitions ejercicio 2_
+
+```
+package stepsDefinitions;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import driver.GoogleChromeDriver;
+import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.GivenWhenThen;
+import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
+import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
+import net.serenitybdd.screenplay.questions.WebElementQuestion;
+import tasks.BuscarEstilos;
+import uis.VisualizarProducto;
+
+public class FloresDeLujoStepsDefinitionsB {
+
+    Actor actor = new Actor(" Pepito Perez");
+
+    @Given("^cargar pagina Flores de lujo$")
+    public void cargarPaginaFloresDeLujo() {
+      actor.can(BrowseTheWeb.with(GoogleChromeDriver.ChromeHisBrowserWeb().on("https://floresdelujo.co/")));
+    }
+
+    @When("^ingresar al estilo amor para buscar (.*)$")
+    public void ingresarAlEstiloAmorParaBuscar(String arregloFloral) {
+        actor.attemptsTo(BuscarEstilos.floresDeLujo(arregloFloral));
+    }
+
+    @Then("^visualizo los productos (.*) en pantalla$")
+    public void visualizLosProductosEnPantalla(String producto) {
+        actor.should(GivenWhenThen.seeThat(WebElementQuestion.the(VisualizarProducto.NOMBRE.of(producto)), WebElementStateMatchers.containsText(producto)));
+    }
+
+    @When("^ingreso al estilo amor para buscar (.*)$")
+    public void ingresoAlEstiloAmorParaBuscar(String arregloFloral) {
+        actor.attemptsTo(BuscarEstilos.floresDeLujo(arregloFloral));
+    }
+
+    @Then("^ver el producto (.*) en pantalla$")
+    public void verElProductoEnPantalla(String producto) {
+        actor.should(GivenWhenThen.seeThat(WebElementQuestion.the(VisualizarProducto.NOMBRE.of(producto)), WebElementStateMatchers.containsText(producto)));
+    }
+}
+
+```
+
+_Clase stepsdefinitions ejercicio 3_
+
+```
+package stepsDefinitions;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import driver.GoogleChromeDriver;
+import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.GivenWhenThen;
+import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
+import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
+import net.serenitybdd.screenplay.questions.WebElementQuestion;
+import tasks.BuscarEstilos;
+import uis.VisualizarProducto;
+
+public class FloresDeLujoStepsDefinitionsEscenarios {
+
+    Actor actor = new Actor(" Pepito Perez");
+
+    @Given("^cargue pagina Flores de lujo$")
+    public void carguePaginaFloresDeLujo() {
+      actor.can(BrowseTheWeb.with(GoogleChromeDriver.ChromeHisBrowserWeb().on("https://floresdelujo.co/")));
+    }
+
+    @When("^entrar al estilo amor para buscar (.*)$")
+    public void entrarAlEstiloAmorParaBuscar(String arregloFloral) {
+        actor.attemptsTo(BuscarEstilos.floresDeLujo(arregloFloral));
+    }
+
+    @Then("^visualizare los productos (.*) en pantalla$")
+    public void visualizareLosProductosEnPantalla(String producto) {
+        actor.should(GivenWhenThen.seeThat(WebElementQuestion.the(VisualizarProducto.NOMBRE.of(producto)), WebElementStateMatchers.containsText(producto)));
+    }
+    @Given("^cargue pagina de Flores de lujo$")
+    public void carguePaginaDeFloresDeLujo() {
+        actor.can(BrowseTheWeb.with(GoogleChromeDriver.ChromeHisBrowserWeb().on("https://floresdelujo.co/")));
+    }
+
+    @When("^entrar al estilo licores para buscar (.*)$")
+    public void entrarAlEstiloLicoresParaBuscar(String licores) {
+        actor.attemptsTo(BuscarEstilos.floresDeLujo(licores));
+    }
+
+    @Then("^No visualizare los productos (.*) en pantalla$")
+    public void noVisualizareLosProductosEnPantalla(String producto) {
+        actor.should(GivenWhenThen.seeThat(WebElementQuestion.the(VisualizarProducto.NOMBRE.of(producto)), WebElementStateMatchers.containsText(producto)));
+    }
+}
+
+```
+
+_Paquete features_
+
+_En este paquete se describen las características y escenarios a probar haciendo uso del lenguaje Gherkin_
+
+_Clase feature ejercicio 1_
+
+```
+Feature: HU-001 Buscar arreglo en Flores De Lujo
+  Yo como usuario de FL
+  Quiero buscar un arreglo floral en la plataforma
+  Para ver el nombre del producto en pantalla
+
+  Scenario Outline: Buscar arreglo floral <NombreProducto>
+    Given me encuentro en la pagina de FloresDeLujo
+    When se ingresa al estilo amor para buscar <NombreProducto>
+    Then podre ver los productos <NombreProducto> en pantalla
+
+    Examples:
+    |NombreProducto|
+    |Rustic      |
+    |fantasia    |
+    |Rafaela   |
+    |Cleopatra  |
+    |Bianca    |
+```
+
+_Archivo feature ejercicio 2_
+
+```
+Feature: HU-001 Buscar arreglo en Flores De Lujo
+  Yo como usuario de FL
+  Quiero buscar un arreglo floral en la plataforma
+  Para ver el nombre del producto en pantalla
+
+  Background: Abrir pagina
+    Given cargar pagina Flores de lujo
+@Scenario1:
+  Scenario Outline: Buscar arreglo floral
+    When ingresar al estilo amor para buscar <flores>
+    Then visualizo los productos <flores> en pantalla
+    Examples:
+      | flores |
+      | Cleopatra |
+@Scenario2:
+  Scenario Outline: Buscar arreglo floral
+    When ingreso al estilo amor para buscar <flores>
+    Then ver el producto <flores> en pantalla
+    Examples:
+      | flores |
+      | Rustic |
+
+```
+
+_Archivo feature 3_
+
+```
+Feature: HU-001 Buscar arreglo en Flores De Lujo
+  Yo como usuario de FL
+  Quiero buscar un arreglo floral en la plataforma
+  Para ver el nombre del producto en pantalla
+
+@ScenarioExits:
+  Scenario Buscar arreglo floral
+    Given cargue pagina Flores de lujo
+    When entrar al estilo amor para buscar
+    Then visualizare los productos en pantalla
+
+@ScenarioFailed
+  Scenario Buscar arreglo floral fallido
+    Given cargue pagina de Flores de lujo
+    When entrar al estilo licores para buscar
+    Then no visualizare los productos en pantalla
+```
+
+_Aquí implementamos los conocimientos impartidos por la empresa SQA_
