@@ -398,7 +398,7 @@ _Paquete features_
 
 _En este paquete se describen las características y escenarios a probar haciendo uso del lenguaje Gherkin_
 
-_Clase feature ejercicio 1_
+_Archivo feature ejercicio 1_
 
 ```
 Feature: HU-001 Buscar arreglo en Flores De Lujo
