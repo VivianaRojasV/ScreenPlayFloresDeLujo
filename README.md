@@ -2,7 +2,7 @@
 
 _Dando continuidad al Semillero de Automatización de SQA, explicaremos el presente reto el cual implementamos con el patrón de diseño para la automatización ScreenPlay. Este patrón cumple con todos los principios Solid, pone a trabajar al usuario en términos de tareas y no de interfaz. Este tiene arquitectura de Features + Runners, Step Definicions, Taks, Interaction, Quiestion e interface de usuario._
 
-##Las herramientas usadas para su procedimiento fueron:
+## Las herramientas usadas para su procedimiento fueron:
 
 * IDEA Intellij
 
