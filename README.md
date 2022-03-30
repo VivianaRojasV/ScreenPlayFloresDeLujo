@@ -34,14 +34,14 @@ _Clase GoogleChromeDriver._
 
 _En la clase GoogleChromeDriver se crea un método ChromeDriver con parámetro de String o link, este nos permite abrir el navegador y realizar la búsqueda de la pagina https://floresdelujo.co/._
 ```
-public static void chromeWebDriver(String url){
+**public static void chromeWebDriver(String url){
     ChromeOptions options = new ChromeOptions();
     options.addArguments("--start-maximized");
     options.addArguments("--ignore-certificate-errors");
     options.addArguments("--disable-infobars");
     driver = new ChromeDriver(options);
     driver.get(url);
-}
+}**
 
 ```
 ### Paquete tasks
